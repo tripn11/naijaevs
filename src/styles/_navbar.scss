@@ -1,0 +1,223 @@
+@use './menu-icon';
+
+$header-bg: #181c23;
+$header-hover: #283244;
+$brand-font: 'Audiowide', 'Segoe UI', Arial, sans-serif;
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 1100;
+
+  & > div {
+    background: $header-bg;
+    height: 8vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem 0 0.3rem;
+
+    #logo {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-left: 1rem;
+
+      img {
+        height: 2rem;
+        width: auto;
+        display: block;
+      }
+
+      span {
+        font-family: $brand-font;
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: #fff;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.08);
+        letter-spacing: 0.1rem;
+        padding-left: 0.3rem;
+      }
+    }
+
+    .hamburger {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+  }
+
+  & > nav {
+    position: fixed;
+    top: 8vh;
+    right: 0;
+    width: 80vw;
+    max-width: 20rem;
+    height: 92vh;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background: #fff;
+    box-shadow: -2px 0 16px rgba(0,0,0,0.15);
+    z-index: 1000;
+    transform: translateX(100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.5s cubic-bezier(.1,0,.2,1), opacity 0.8s cubic-bezier(0.6,0.5,.1,1);
+
+    &.open {
+      transform: translateX(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    a,label{
+      text-decoration: none;
+      color: inherit;
+      margin: 1rem 0;
+      gap: 2rem;
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      cursor: pointer;
+      position: relative;
+      z-index: 2;
+    }
+
+    #submenu {
+      width: 100%;
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 0.5s cubic-bezier(.4,0,.2,1), opacity 0.5s cubic-bezier(.4,0,.2,1);
+      margin-bottom: 0.5rem;
+      border-radius: 0.3rem;
+      padding: 0 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      &.open {
+        max-height: 30vh;
+        opacity: 1;
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    &>div {
+      #logo {
+        span {
+          font-size: 0.9rem;
+          letter-spacing: 0.2rem;
+        }
+      }
+
+      .hamburger {
+        display: none;
+      }
+    }
+ 
+    & > nav {
+      background: none;
+      opacity: 1;
+      pointer-events: auto;
+      top: 0;
+      height: 8vh;
+      right: 10%;
+      flex-direction: row;
+      color:white;
+      max-width: 53vw;
+      justify-content: space-evenly;
+      align-items: center;
+      gap:1rem;
+      transform: translateX(0);
+
+      >a:hover,label:hover {
+        background-color: $header-hover;
+        width: 50%;
+      }
+
+      >a.active,label.active {
+        color: rgb(175, 174, 174);
+      }
+
+      >*{
+        flex:1;
+        flex-basis: content;
+        padding: 0.8rem 0.6rem;
+        text-align: center;;
+      }
+
+      #submenu {
+        background-color: $header-bg;
+        border-radius: 0;
+        flex-direction: row;
+        padding:5rem;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 8vh;
+        width: 100%;
+        padding: 1rem;
+        z-index: 1001;
+
+        >* {
+          flex: 1;
+          flex-basis: content;
+          padding: 0.8rem 0.6rem;
+          text-align: center;
+        }
+
+        >*:hover {
+          background-color: $header-hover;
+        }
+      }
+
+      label {
+        display: inline-block;
+      }
+
+      label > span:last-child {
+        display: none;
+      }
+    }
+  }
+
+  @media (min-width: 1000px){
+    &>div {
+      #logo {
+        img {
+          height: 2.5rem;
+        }
+        span {
+          font-size: 1rem;
+          letter-spacing: 0.3rem;
+        }
+      }
+    }
+
+    & > nav {
+      right:10%;
+    }
+  }
+
+  
+  @media (min-width: 1200px){
+    & > nav {
+      right:15%;
+      max-width:50vw;
+    }
+  }
+}

@@ -1,0 +1,98 @@
+$footer-color: #c4c2c2;
+$footer-bg: #181c23;
+
+footer {
+  height: 4rem;
+  background: $footer-bg;
+  color: $footer-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  // gap: 0.2rem;
+  z-index: 1000;
+  overflow-y: hidden;
+  padding-top: 0.5rem;
+
+  p {
+    text-align: center;
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    flex-direction: row;
+
+    ion-icon {
+      font-size: 0.8rem;
+      color: $footer-color;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: grey;
+      }
+    }
+
+    .x-logo {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      transition: transform 0.3s ease, filter 0.3s ease;
+
+      svg {
+        width: 100%;
+        height: 100%;
+
+        path {
+          fill: $footer-color;
+          transition: fill 0.3s ease;
+        }
+      }
+
+      &:hover {
+        transform: scale(1.1);
+
+        svg path {
+          fill: grey;
+        }
+      }
+    }
+
+
+  }
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1.5rem 3rem;
+    font-size: 0.9rem;
+
+    p {
+      text-align: left;
+      flex-shrink: 0;
+    }
+
+    p:nth-child(2) {
+      margin-left: auto;
+    }
+
+    div {
+      gap: 1.2rem;
+      margin-left: 1rem;
+
+      ion-icon {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 0.9rem;
+    height: 2vh;
+    div {
+      gap: 1.5rem;
+    }
+  }
+}

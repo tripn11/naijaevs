@@ -1,0 +1,63 @@
+.vehicle-wrap {
+  width: 90%;
+  max-width: 350px;
+  margin: 1rem auto;
+  position: relative;
+  display: block;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+
+  &:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 0.4s ease;
+
+    .vehicle-wrap:hover & {
+      transform: scale(1.05);
+    }
+  }
+
+  div {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 1rem 0.5rem;
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.7));
+    color: #fff;
+    font-weight: 500;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(4px);
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+
+    span:last-child {
+      font-size: 0.85rem;
+      font-weight: 400;
+      opacity: 0.9;
+    }
+  }
+
+  @media (min-width: 800px) {
+    div {
+        font-size: 1rem;
+    }
+  }
+
+  @media (min-width: 950px) {
+        div{
+            font-size: 1.3rem;
+        }
+    }
+}

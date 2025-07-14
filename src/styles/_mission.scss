@@ -1,0 +1,259 @@
+#mission {
+    width:100%;
+    background-color: black;
+    color: white;
+    font-size: 0.9rem;
+    position: relative;
+    padding-bottom: 3vh;
+
+    section:first-child {
+        position:relative;
+        width: 100%;
+        height: 22rem;
+
+        video {
+            width: 150%;
+            height: 100%;
+        }
+
+        div {
+            position: absolute;
+            inset: 0;
+            color: white;
+            padding: 5rem 0.7rem;
+
+            h2 {
+                padding: 2rem 0 2rem;
+            }
+
+            p {
+                line-height: 1.2rem;
+                font-family: 'Courier New', Courier, monospace;
+                font-size: 0.8rem;
+                padding-left: 1rem;
+            }
+        }
+    }
+
+    section:last-child {
+        width: 100%;
+
+        article {
+            position: relative;
+            height: 25rem;
+
+            div {
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(to bottom, rgba(0,0,0), transparent 50%, rgba(0,0,0));
+            }
+
+            h3,p {
+                position:absolute;
+                padding: 0.5rem;
+                z-index: 2;
+            }
+
+            h3 {
+                top:8rem;
+                opacity: 0;
+                transform: translateX(-30px);
+                transition: opacity 2s ease-out, transform 1s ease-out;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                font-size: 1.2rem;
+
+                &.in-view {
+                    opacity: 1;
+                    transform: translateX(20px);  
+                }
+            }
+
+            p {
+                width: 60vw;
+                right:1rem;
+                display: inline-block;
+                top: 15rem;
+                line-height: 1.2rem;
+                opacity: 0;
+                transform: translateX(20px);
+                transition: opacity 2s ease-out, transform 1s ease-out;
+
+                &.in-view {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+
+            img {
+                width: auto;
+                height: 100%;
+            }
+
+            &:last-child {
+                margin-bottom:5vh;
+            }
+        }
+
+
+    }
+
+    @media (min-width: 450px) {
+        font-size: 1.1rem;
+
+        section:first-child {
+            div {
+                width: 100%;
+                padding-left: 2rem;
+
+                h2 {
+                    padding-bottom: 4rem;
+                }
+
+                p {
+                    font-size:3vw;
+                }
+            }
+            video {
+                width: auto;
+            }
+        }
+
+        section:last-child {
+            article {
+                h3 {
+                    font-size: 1.5rem;
+                }
+            }
+        }
+    }
+
+    @media (min-width:550px) {
+        font-size: 1.4rem;
+
+        section:first-child {
+            div {
+                width: 100%;
+                p{
+                    position: relative;
+                    line-height: 1.8rem;
+
+                }
+            }
+        }
+        
+        section:last-child {
+            article {
+                h3 {
+                    font-size: 1.8rem;
+                }
+                p {
+                    font-size: 1.2rem;
+                    line-height: 1.7rem;
+                }
+            }
+        }
+    }
+
+    @media (min-width: 650px) {
+        section:first-child {
+            width: 100vw;
+            video {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            div {
+                font-size: 1.5rem;
+                width: 100%;
+                
+                h2{
+                    padding-bottom: 2rem;
+                }
+
+                p {
+                    line-height: 2rem;
+                    font-size: 1.3rem;
+                }
+            }
+        }
+
+        section:last-child {
+            article {
+                h3 {
+                    top:5rem;
+                    padding-left: 2rem;
+                    font-size: 2rem;
+                }
+                p {
+                    top:15rem;
+                }
+                img {
+                   height: 95%;
+                   width:100%;
+                   object-fit: cover;
+                }
+            }
+        }
+    }
+
+    @media (min-width: 800px) {
+        section:first-child {
+            div {
+                padding-left: 5rem;
+                padding-right: 3rem;
+                width:100%;
+            }
+        }
+    }
+
+    @media (min-width: 1000px) {
+
+        section:first-child {
+            height: 100vh;
+            div {
+                h2{
+                    padding-bottom: 6rem;
+                    padding-top: 5rem;
+                }
+                p{
+                    font-size: 1.7rem;
+                    width: 90%;
+                    padding: 0;
+                }
+            }
+        }
+
+        section:last-child {
+            article {
+                height: 120vh;
+                h3 {
+                    top: 35vh;
+                    text-shadow:
+                        -1px -1px 0 gray,
+                        1px -1px 0 gray,
+                        -1px  1px 0 gray,
+                        1px  1px 0 gray;
+                }
+
+                p {
+                    top:70vh;
+                    font-size: 1.2rem;
+                    width: 30%;
+                    line-height: 2rem;
+                    right: 7rem;
+                }
+            }
+        }
+    }
+
+    @media (min-width: 1200px) {
+        section:first-child {
+            div {
+                p {
+                    width: 70vw;
+                    margin: 0 auto;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,81 @@
+.brands-container {
+  padding: 2rem 1rem;
+  background: #f9f9f9;
+  min-height: 92vh;
+
+  >p {
+    text-align: center;
+    margin-top:10rem;
+  }
+
+  > div:last-child {
+        margin-bottom: 10rem;
+    }
+}
+
+.brand {
+  position: relative;
+  top: 5vh;
+  width: 100%;
+  padding: 2rem 1rem;
+  margin-bottom: 5rem;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  animation: fadeUp 0.6s ease both;
+
+  h2 {
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        color: #222;
+        position: relative;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: #2b7a78;
+            border-radius: 2px;
+        }
+    }
+
+  .brand-vehicles {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        justify-content: center;
+        gap: 2rem;
+        padding: 1rem;
+    }
+
+  @media (min-width: 768px) {
+        padding: 3rem 2rem;
+        h2{
+            font-size: 1.9rem;
+        }
+    }
+
+    @media (min-width: 1000px) {
+    padding: 3rem 2rem;
+    h2{
+        font-size: 2.1rem;
+    }
+  }
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
