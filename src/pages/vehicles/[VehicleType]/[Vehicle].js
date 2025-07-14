@@ -59,7 +59,7 @@ const Vehicle = () => {
   if (!selectedVehicle) {
     router.push('/vehicles/cars'); 
   }
-}, [selectedVehicle]);
+}, [selectedVehicle, router]);
 
 
 

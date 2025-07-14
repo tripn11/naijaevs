@@ -32,7 +32,7 @@ const supportCards = [
   },
 ];
 
-export default () => {
+const Support = () => {
   return (
     <>
       <SEO title="Support | EV Charger & Solar Installation Help" 
@@ -70,3 +70,5 @@ export default () => {
     
   );
 };
+
+export default Support;

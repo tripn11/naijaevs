@@ -6,7 +6,7 @@ import { useVehicle } from '@/components/context/VehicleContext';
 
 const validatePhone = (phone) => /^\+?\d{7,15}$/.test(phone);
 
-export default () => {
+const ContactForm = () => {
   const router = useRouter();
   const { selectedVehicle } = useVehicle();
   const [error, setError] = useState('');
@@ -34,7 +34,7 @@ export default () => {
     } else {
       router.push('/404');
     }
-  }, [router.isReady, service]);
+  }, [router.isReady, service, router]);
 
   const props = router.query;
 
@@ -98,3 +98,5 @@ export default () => {
     </form>
   );
 }
+
+export default ContactForm;

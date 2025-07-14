@@ -1,6 +1,6 @@
 import XLogo from "./XLogo"
 
-export default () => {
+const Footer = () => {
     return (
         <footer>
             <p>© 2025 Enerplaz. All rights reserved.</p>
@@ -19,3 +19,5 @@ export default () => {
         </footer>
     )
 }
+
+export default Footer;

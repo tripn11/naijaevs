@@ -1,6 +1,6 @@
 import SEO from '../../components/SEO';
 
-export default () => {
+const FAQ = () => {
   return (
     <>
       <SEO title="FAQ | Enerplaz EVs" 
@@ -31,3 +31,5 @@ export default () => {
     
   );
 };
+
+export default FAQ;
