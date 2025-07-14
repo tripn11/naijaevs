@@ -26,10 +26,10 @@ const ContactForm = () => {
     if (!router.isReady) return;
     setService(router.query.ContactForm);
 
-    if (service === 'maintenance' || 
-        service === 'installation' ||
-        service === 'order' || 
-        service === 'test-drive') {
+    if (router.query.ContactForm === 'maintenance' || 
+        router.query.ContactForm === 'installation' ||
+        router.query.ContactForm === 'order' || 
+        router.query.ContactForm === 'test-drive') {
       return;
     } else {
       router.push('/404');
