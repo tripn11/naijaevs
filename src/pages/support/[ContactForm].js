@@ -79,7 +79,7 @@ const ContactForm = () => {
 
   return (
     <form className="classic-form" onSubmit={handleSubmit}>
-      <h2>{props.purpose?.replace(/\b\w/g, c => c.toUpperCase())}</h2>
+      <h2>{props.purpose || router.query.ContactForm?.replace(/\b\w/g, c => c.toUpperCase())}</h2>
 
       <input type="text" name="name" placeholder="Full Name" value={form.name} onChange={handleChange} required />
       <input type="tel" name="phone" placeholder="Phone Number" value={form.phone} onChange={handleChange} required />
