@@ -5,7 +5,7 @@ const FAQ = () => {
     <>
       <SEO title="FAQ | Enerplaz EVs" 
         description="Find answers to common questions about our electric vehicles, charging solutions, and more." 
-        url={`${process.env.NEXT_PUBLIC_API_URL}/support/FAQ`}
+        url='https://enerplazevs.com/support/FAQ'
       />
       
       <section className="faq">

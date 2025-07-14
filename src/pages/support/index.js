@@ -37,7 +37,7 @@ const Support = () => {
     <>
       <SEO title="Support | EV Charger & Solar Installation Help" 
         description="Find support for EV charger installation, electric vehicle maintenance, solar panel setup for solar charging, and ways to contact our support team." 
-        url={`${process.env.NEXT_PUBLIC_API_URL}/support`}
+        url='https://enerplazevs.com/support'
       />
 
         <section id="support">

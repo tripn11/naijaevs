@@ -48,7 +48,7 @@ const Mission = () => {
         description='Discover our mission to revolutionize transportation 
         with electric vehicles—promoting a cleaner future, solar charging, 
         and beautiful interiors for a new era of sustainable mobility.' 
-        url={`${process.env.NEXT_PUBLIC_API_URL}/mission`} />
+        url='https://enerplazevs.com/mission' />
         <div id='mission'>
         <section>
             <video autoPlay muted loop playsInline>

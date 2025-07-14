@@ -63,7 +63,7 @@ const VehicleType = ({ brands, models }) => {
             <SEO
                 title={`${vehicleType.charAt(0).toUpperCase() + vehicleType.slice(1)}`}
                 description={`Discover the latest ${vehicleType} in the enerplaz.`}
-                url={`${process.env.NEXT_PUBLIC_BASE_URL}/vehicles/${vehicleType}`}
+                url={`https://enerplazevs.com/vehicles/${vehicleType}`}
             />
 
             <div className='brands-container'>

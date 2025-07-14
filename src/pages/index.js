@@ -43,7 +43,8 @@ const Home = () => {
       <SEO 
       title="Home" 
       description="Welcome to Enerplaz EVs, 
-      your number one source for electric vehicles in Nigeria." />
+      your number one source for electric vehicles in Nigeria."
+      url='https://enerplazevs.com' />
       <main className="home-hero">
         <div
           className="hero-bg"

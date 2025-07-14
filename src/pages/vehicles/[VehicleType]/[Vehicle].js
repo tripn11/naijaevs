@@ -101,6 +101,7 @@ const Vehicle = () => {
     <SEO
       title={`${selectedVehicle.year} ${selectedVehicle.model}`} 
       description={`${selectedVehicle.year} ${selectedVehicle.model} is available for sale. Price: ${vehiclePrice}.`}
+      url='https://enerplazevs.com/vehicles'
     />
       <div className='vehicle'>
       <div>
