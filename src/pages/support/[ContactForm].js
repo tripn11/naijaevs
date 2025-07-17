@@ -78,24 +78,27 @@ const ContactForm = () => {
   };
 
   return (
-    <form className="classic-form" onSubmit={handleSubmit}>
-      <h2>{props.purpose || router.query.ContactForm?.replace(/\b\w/g, c => c.toUpperCase())}</h2>
+    <div className='contact-form-page'>
+      <form className="contact-form" onSubmit={handleSubmit}>
+        <h2>{(props.purpose || router.query.ContactForm)?.replace(/\b\w/g, c => c.toUpperCase())}</h2>
 
-      <input type="text" name="name" placeholder="Full Name" value={form.name} onChange={handleChange} required />
-      <input type="tel" name="phone" placeholder="Phone Number" value={form.phone} onChange={handleChange} required />
-      <input type="email" name="email" placeholder="Email" value={form.email} onChange={handleChange} required />
-      <input type="date" name="date" value={form.date || ""} onChange={handleChange} required />
-      <input type="time" name="time" value={form.time || ""} onChange={handleChange} required />
+        <input type="text" name="name" placeholder="Full Name" value={form.name} onChange={handleChange} required />
+        <input type="tel" name="phone" placeholder="Phone Number" value={form.phone} onChange={handleChange} required />
+        <input type="email" name="email" placeholder="Email" value={form.email} onChange={handleChange} required />
+        <input type="date" name="date" value={form.date || ""} onChange={handleChange} required />
+        <input type="time" name="time" value={form.time || ""} onChange={handleChange} required />
 
-      {(props.purpose === 'install a charger' || props.purpose === 'request maintenance') && (
-        <input type="text" name="location" placeholder="Location" value={form.location} onChange={handleChange} required />
-      )}
+        {(props.purpose === 'install a charger' || props.purpose === 'request maintenance') && (
+          <input type="text" name="location" placeholder="Location" value={form.location} onChange={handleChange} required />
+        )}
 
-      {error && <p className="error">{error}</p>}
-      {success && <p className="success">Thank you! We will get back to you soon.</p>}
+        {error && <p className="error">{error}</p>}
+        {success && <p className="success">Thank you! We will get back to you soon.</p>}
 
-      <button type="submit" disabled={loading}>{loading ? 'Submitting...' : 'Submit'}</button>
-    </form>
+        <button type="submit" disabled={loading}>{loading ? 'Submitting...' : 'Submit'}</button>
+      </form>
+    </div>
+    
   );
 }
 

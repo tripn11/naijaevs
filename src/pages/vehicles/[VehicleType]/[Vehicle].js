@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
 import Loading from '@/components/Loading';
 import { useVehicle } from '@/components/context/VehicleContext';
@@ -25,7 +25,6 @@ const overviewIcons = {
   'acceleration(0-100)s': { icon: 'timer-outline', color: '#00b894' },
 };
 
-
 const Vehicle = () => {
   const router = useRouter();
   const { selectedVehicle } = useVehicle();
@@ -33,6 +32,9 @@ const Vehicle = () => {
   const [images, setImages] = useState([]);
   const [currentImage, setCurrentImage] = useState(0);
   const [loading, setLoading] = useState(true);
+
+  const touchStartX = useRef(null);
+  const touchEndX = useRef(null);
 
   useEffect(() => {
     if (selectedVehicle && selectedVehicle.images?.length > 0) {
@@ -51,25 +53,15 @@ const Vehicle = () => {
         setLoading(false);
       });
     } else {
-      setLoading(false); 
+      setLoading(false);
     }
   }, [selectedVehicle]);
 
   useEffect(() => {
-  if (!selectedVehicle) {
-    router.push('/vehicles/cars'); 
-  }
-}, [selectedVehicle, router]);
-
-
-
-  const handleOrderNow = () => {
-    router.push(`/support/order`);
-  };
-
-  const handleTestDrive = () => {
-    router.push(`/support/test-drive`);
-  };
+    if (!selectedVehicle) {
+      router.push('/vehicles/cars');
+    }
+  }, [selectedVehicle, router]);
 
   const imageChanger = (action) => {
     if (action === 'next') {
@@ -90,6 +82,26 @@ const Vehicle = () => {
     }).format(numericPrice);
   };
 
+  const handleTestDrive = () => router.push('/support/test-drive');
+  const handleOrderNow = () => router.push('/support/order');
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const diff = touchStartX.current - touchEndX.current;
+    if (diff > 50) {
+      imageChanger('next');
+    } else if (diff < -50) {
+      imageChanger('prev');
+    }
+  };
+
   const vehiclePrice = formatNaira(selectedVehicle?.price);
 
   if (!selectedVehicle) return <div>Vehicle data not found.</div>;
@@ -97,74 +109,73 @@ const Vehicle = () => {
 
   return (
     <>
-
-    <SEO
-      title={`${selectedVehicle.year} ${selectedVehicle.model}`} 
-      description={`${selectedVehicle.year} ${selectedVehicle.model} is available for sale. Price: ${vehiclePrice}.`}
-      url='https://enerplazevs.com/vehicles'
-    />
+      <SEO
+        title={`${selectedVehicle.year} ${selectedVehicle.model}`}
+        description={`${selectedVehicle.year} ${selectedVehicle.model} is available for sale. Price: ${vehiclePrice}.`}
+        url='https://enerplazevs.com/vehicles'
+      />
       <div className='vehicle'>
-      <div>
-        {images.length > 0 && (
-          <>
-            {images[currentImage]?.mimeType?.startsWith('video') ? (
-              <video
-                src={images[currentImage].url}
-                controls
-              />
-            ) : (
-              <img
-                src={images[currentImage]?.url}
-                alt={images[currentImage]?.alt}
-              />
-            )}
-          </>
-        )}
-        <ion-icon name="chevron-forward-outline" id='next' onClick={() => imageChanger('next')}></ion-icon>
-        <ion-icon name="chevron-back-outline" id='prev' onClick={() => imageChanger('prev')}></ion-icon>
-        <div className='guide'>
-          {images.map((_, index) => (
-            <div key={index} className={currentImage === index ? 'active' : ''}></div>
-          ))}
+        <div
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          {images.length > 0 && (
+            <>
+              {images[currentImage]?.mimeType?.startsWith('video') ? (
+                <video src={images[currentImage].url} controls />
+              ) : (
+                <img
+                  src={images[currentImage]?.url}
+                  alt={images[currentImage]?.alt}
+                />
+              )}
+            </>
+          )}
+          <ion-icon name="chevron-forward-outline" id='next' onClick={() => imageChanger('next')}></ion-icon>
+          <ion-icon name="chevron-back-outline" id='prev' onClick={() => imageChanger('prev')}></ion-icon>
+          <div className='guide'>
+            {images.map((_, index) => (
+              <div key={index} className={currentImage === index ? 'active' : ''}></div>
+            ))}
+          </div>
         </div>
-      </div>
 
-      <h3 className='model'>{selectedVehicle.year} {selectedVehicle.model}</h3>
-      <div className='price'>{vehiclePrice}</div>
+        <h3 className='model'>{selectedVehicle.year} {selectedVehicle.model}</h3>
+        <div className='price'>{vehiclePrice}</div>
 
-      <div className='overview'>
-        <h3>Overview</h3>
-        <div className='overview-grid'>
-          {Object.entries(selectedVehicle.overview || {})
-            .filter(([_, value]) => value !== '' && value !== null && value !== undefined)
-            .map(([key, value]) => {
-              const icon = overviewIcons[key];
-              const label = key.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+        <div className='overview'>
+          <h3>Overview</h3>
+          <div className='overview-grid'>
+            {Object.entries(selectedVehicle.overview || {})
+              .filter(([_, value]) => value !== '' && value !== null && value !== undefined)
+              .map(([key, value]) => {
+                const icon = overviewIcons[key];
+                const label = key.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 
-              return (
-                <div className='overview-item' key={key}>
-                  {icon && <ion-icon name={icon.icon} style={{ color: icon.color }} />}
-                  <div>
-                    <strong>
-                      {typeof value === 'string'
-                        ? value.charAt(0).toUpperCase() + value.slice(1)
-                        : value}
-                    </strong>
-                    <div>{label}</div>
+                return (
+                  <div className='overview-item' key={key}>
+                    {icon && <ion-icon name={icon.icon} style={{ color: icon.color }} />}
+                    <div>
+                      <strong>
+                        {typeof value === 'string'
+                          ? value.charAt(0).toUpperCase() + value.slice(1)
+                          : value}
+                      </strong>
+                      <div>{label}</div>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+          </div>
+        </div>
+
+        <div>
+          <button onClick={handleTestDrive}>Book a Test Drive</button>
+          <button onClick={handleOrderNow}>Order Now</button>
         </div>
       </div>
-
-      <div>
-        <button onClick={handleTestDrive}>Book a Test Drive</button>
-        <button onClick={handleOrderNow}>Order Now</button>
-      </div>
-    </div>
     </>
-    
   );
 };
 
