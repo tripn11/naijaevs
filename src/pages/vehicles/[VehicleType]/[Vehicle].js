@@ -94,12 +94,14 @@ const Vehicle = () => {
   };
 
   const handleTouchEnd = () => {
+    if (touchStartX.current === null || touchEndX.current === null) return;
+
     const diff = touchStartX.current - touchEndX.current;
-    if (diff > 50) {
-      imageChanger('next');
-    } else if (diff < -50) {
-      imageChanger('prev');
-    }
+    if (diff > 50) imageChanger('next');
+    else if (diff < -50) imageChanger('prev');
+
+    touchStartX.current = null;
+    touchEndX.current = null;
   };
 
   const vehiclePrice = formatNaira(selectedVehicle?.price);
