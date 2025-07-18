@@ -27,7 +27,7 @@ const supportCards = [
     title: 'Enquiry',
     image: '/support/enquiries.jpg',
     action: 'Chat with us',
-    link: 'https://wa.me/2348162557331',
+    link: 'https://wa.me/2348037543295',
     isWhatsapp: true,
   },
 ];

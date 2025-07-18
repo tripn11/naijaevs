@@ -71,17 +71,6 @@ const Vehicle = () => {
     }
   };
 
-  const formatNaira = (price) => {
-    const numericPrice = parseFloat(price);
-    if (isNaN(numericPrice)) return 'Invalid Price';
-
-    return new Intl.NumberFormat('en-NG', {
-      style: 'currency',
-      currency: 'NGN',
-      maximumFractionDigits: 0,
-    }).format(numericPrice);
-  };
-
   const handleTestDrive = () => router.push('/support/test-drive');
   const handleOrderNow = () => router.push('/support/order');
 
@@ -104,8 +93,6 @@ const Vehicle = () => {
     touchEndX.current = null;
   };
 
-  const vehiclePrice = formatNaira(selectedVehicle?.price);
-
   if (!selectedVehicle) return <div>Vehicle data not found.</div>;
   if (loading) return <Loading />;
 
@@ -113,7 +100,7 @@ const Vehicle = () => {
     <>
       <SEO
         title={`${selectedVehicle.year} ${selectedVehicle.model}`}
-        description={`${selectedVehicle.year} ${selectedVehicle.model} is available for sale. Price: ${vehiclePrice}.`}
+        description={`${selectedVehicle.year} ${selectedVehicle.model} is available for sale. Explore its features, specifications, and pricing. Book a test drive or order now.`}
         url='https://enerplazevs.com/vehicles'
       />
       <div className='vehicle'>
@@ -144,7 +131,7 @@ const Vehicle = () => {
         </div>
 
         <h3 className='model'>{selectedVehicle.year} {selectedVehicle.model}</h3>
-        <div className='price'>{vehiclePrice}</div>
+        <div className='price'><a href={`https://wa.me/2348037543295?text=Hi, what is the price of the ${selectedVehicle.year} ${selectedVehicle.model}?`}>Ask for Price</a></div>
 
         <div className='overview'>
           <h3>Overview</h3>

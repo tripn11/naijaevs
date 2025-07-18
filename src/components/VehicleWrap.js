@@ -11,19 +11,6 @@ const VehicleWrap = ({ vehicle }) => {
     router.push(`/vehicles/${vehicle.vehicle_type.name}/${vehicle.model}`);
   };
 
-  const formatNaira = (price) => {
-    const numericPrice = parseFloat(price);
-    if (isNaN(numericPrice)) return 'Invalid Price';
-    const formatter = new Intl.NumberFormat('en-NG', {
-      style: 'currency',
-      currency: 'NGN',
-      maximumFractionDigits: 0,
-    });
-    return formatter.format(numericPrice);
-  };
-
-  const vehiclePrice = formatNaira(vehicle.price);
-
   return (
     <div onClick={handleClick} className='vehicle-wrap'>
       <img
@@ -32,7 +19,6 @@ const VehicleWrap = ({ vehicle }) => {
       />
       <div>
         <span>{`${vehicle.year} ${vehicle.model}`}</span>
-        <span>{vehiclePrice}</span>
       </div>
     </div>
   );
